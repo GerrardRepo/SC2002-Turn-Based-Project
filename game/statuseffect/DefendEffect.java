@@ -10,7 +10,6 @@ public class DefendEffect extends StatusEffect {
         super(duration);
     }
 
-    @Override
     public void applyTo(Combatant target) {
         if (!applied) {
             target.setDefense(target.getDefense() + DEFENSE_BOOST);
@@ -18,7 +17,6 @@ public class DefendEffect extends StatusEffect {
         }
     }
 
-    @Override
     public void removeFrom(Combatant target) {
         if (applied) {
             target.setDefense(target.getDefense() - DEFENSE_BOOST);
@@ -26,7 +24,6 @@ public class DefendEffect extends StatusEffect {
         }
     }
 
-    @Override
     public String toString() {
         return "DEFENDING (" + duration + " turns remaining)";
     }
