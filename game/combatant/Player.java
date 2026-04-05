@@ -1,5 +1,6 @@
 package game.combatant;
-
+import java.util.ArrayList;
+import java.util.List;
 public abstract class Player extends Combatant {
     private final List<Item> inventory = new ArrayList<>();
     private int specialSkillCooldown = 0;
