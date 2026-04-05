@@ -1,3 +1,4 @@
+package game.combatant;
 public abstract class Combatant {
     private final String name;
     private final int maxHP;
