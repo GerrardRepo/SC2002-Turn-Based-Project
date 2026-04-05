@@ -1,4 +1,6 @@
 package game.combatant;
+import java.util.ArrayList;
+import java.util.List;
 public abstract class Combatant {
     private final String name;
     private final int maxHP;
