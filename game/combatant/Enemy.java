@@ -1,7 +1,5 @@
 package game.combatant;
 
-import game.strategy.EnemyActionStrategy;
-
 public abstract class Enemy extends Combatant {
     private final EnemyActionStrategy actionStrategy;
 
