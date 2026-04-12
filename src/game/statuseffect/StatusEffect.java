@@ -13,13 +13,23 @@ public abstract class StatusEffect {
 
     public abstract void removeFrom(Combatant target);
 
-    public boolean preventsAction() { return false; }
+    public boolean preventsAction() {
+        return false;
+    }
 
-    public boolean blocksDamage() { return false; }
+    public boolean blocksDamage() {
+        return false;
+    }
 
-    public boolean isExpired() { return duration <= 0; }
+    public boolean isExpired() {
+        return duration <= 0;
+    }
 
-    public void tick() { duration--; }
+    public void tick() {
+        duration = duration - 1;
+    }
 
-    public int getDuration() { return duration; }
+    public int getDuration() {
+        return duration;
+    }
 }
