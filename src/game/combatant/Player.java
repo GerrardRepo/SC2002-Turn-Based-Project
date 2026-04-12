@@ -4,18 +4,22 @@ import game.item.Item;
 import java.util.ArrayList;
 import java.util.List;
 
+// adds inventory and special skill cooldown on top of Combatant
 public abstract class Player extends Combatant {
     private List<Item> inventory;
     private int specialSkillCooldown;
 
     public Player(String name, int maxHP, int attack, int defense, int speed) {
         super(name, maxHP, attack, defense, speed);
-        this.inventory = new ArrayList<Item>();
-        this.specialSkillCooldown = 0;
+        inventory = new ArrayList<Item>();
+        specialSkillCooldown = 0;
     }
 
     public List<Item> getInventory() { return inventory; }
-    public int getSpecialSkillCooldown() { return specialSkillCooldown; }
+
+    public int getSpecialSkillCooldown() {
+        return specialSkillCooldown;
+    }
 
     public void addItem(Item item) {
         inventory.add(item);
@@ -29,13 +33,13 @@ public abstract class Player extends Combatant {
         specialSkillCooldown = turns;
     }
 
+    // called at the start of each player turn
     public void reduceCooldown() {
-        if (specialSkillCooldown > 0) {
-            specialSkillCooldown = specialSkillCooldown - 1;
-        }
+        if (specialSkillCooldown > 0)
+            specialSkillCooldown--;
     }
 
     public boolean isSpecialSkillReady() {
-        return specialSkillCooldown <= 0;
+        return specialSkillCooldown == 0;
     }
 }
