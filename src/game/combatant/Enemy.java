@@ -7,10 +7,8 @@ public abstract class Enemy extends Combatant {
 
     public Enemy(String name, int maxHP, int attack, int defense, int speed, EnemyActionStrategy strategy) {
         super(name, maxHP, attack, defense, speed);
-        this.actionStrategy = strategy;
+        actionStrategy = strategy;
     }
 
-    public EnemyActionStrategy getActionStrategy() {
-        return actionStrategy;
-    }
+    public EnemyActionStrategy getActionStrategy() { return actionStrategy; }
 }
