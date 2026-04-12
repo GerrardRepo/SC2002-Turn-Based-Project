@@ -1,37 +1,55 @@
 package game.action;
 
+import game.combatant.Combatant;
+import game.combatant.Wizard;
+import game.engine.BattleContext;
 import java.util.List;
 
-import game.combatant.Combatant;
+public class ArcaneBlast implements Action {
+    private boolean fromPowerStone;
 
-public class ArcaneBlast implements Action
-{
-	@Override
-	public void execute(Combatant actor, BattleContext context)
-	{
-		List<Combatant> enemies = context.getEnemiesOf(actor);
-		
-		int kills = 0;
-		
-		for (Combatant enemy: enemies)
-		{
-			int damage = Math.max(0, actor.getAttack() - enemy.getDefense());
-			
-			enemy.takeDamage(damage);
-			
-			context.log(actor.getName() + " attacks " + enemy.getName() + " with Arcane Blast and deals " + damage + "damage.");
-			
-			if (!enemy.isAlive())
-			{
-				kills++;
-			}
-		}
-		
-		if (kills > 0)
-		{
-			actor.setAttack(actor.getAttack() + (kills * 10));
-			
-			context.log(actor.getName() + " gains " + (kills * 10) + " attack from Arcane Blast kills.");
-		}
-	}
+    public ArcaneBlast(boolean fromPowerStone) {
+        this.fromPowerStone = fromPowerStone;
+    }
+
+    public ArcaneBlast() {
+        this.fromPowerStone = false;
+    }
+
+    public void execute(Combatant actor, BattleContext context) {
+        if (!(actor instanceof Wizard)) {
+            return;
+        }
+        Wizard wizard = (Wizard) actor;
+
+        List<Combatant> aliveEnemies = context.getAliveEnemies();
+        System.out.println(wizard.getName() + " -> Arcane Blast -> All Enemies:");
+
+        for (int i = 0; i < aliveEnemies.size(); i++) {
+            Combatant enemy = aliveEnemies.get(i);
+
+            int damage = wizard.getAttack() - enemy.getDefense();
+            if (damage < 0) {
+                damage = 0;
+            }
+
+            int hpBefore = enemy.getCurrentHP();
+            enemy.takeDamage(damage);
+
+            System.out.println("  " + enemy.getName() + " HP: " + hpBefore + " -> " + enemy.getCurrentHP()
+                    + " (dmg: " + wizard.getAttack() + "-" + enemy.getDefense() + "=" + damage + ")");
+
+            if (!enemy.isAlive()) {
+                wizard.addArcaneBlastBonus(10);
+                System.out.println("  " + enemy.getName() + " ELIMINATED! Wizard ATK: "
+                        + wizard.getAttack() + " (+10 per Arcane Blast kill)");
+            }
+        }
+
+        // Power Stone uses don't trigger cooldown
+        if (!fromPowerStone) {
+            wizard.startCooldown(3);
+            System.out.println("  Special Skills Cooldown set to 3 rounds");
+        }
+    }
 }
