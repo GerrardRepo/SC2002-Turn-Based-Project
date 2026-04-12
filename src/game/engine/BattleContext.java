@@ -6,6 +6,7 @@ import game.combatant.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+// holds the state of the current battle - player, enemies, round number etc
 public class BattleContext {
     private Player player;
     private List<Enemy> enemies;
@@ -15,28 +16,22 @@ public class BattleContext {
     public BattleContext(Player player, List<Enemy> enemies) {
         this.player = player;
         this.enemies = new ArrayList<Enemy>(enemies);
-        this.currentRound = 0;
-        this.backupSpawned = false;
+        currentRound = 0;
+        backupSpawned = false;
     }
 
     public Player getPlayer() { return player; }
     public List<Enemy> getEnemies() { return enemies; }
     public int getCurrentRound() { return currentRound; }
     public boolean isBackupSpawned() { return backupSpawned; }
-    public void setBackupSpawned(boolean spawned) { this.backupSpawned = spawned; }
 
-    public void incrementRound() {
-        currentRound = currentRound + 1;
+    public void setBackupSpawned(boolean spawned) {
+        this.backupSpawned = spawned;
     }
 
-    public List<Combatant> getAlivePlayers() {
-        ArrayList<Combatant> alive = new ArrayList<Combatant>();
-        if (player.isAlive()) {
-            alive.add(player);
-        }
-        return alive;
-    }
+    public void incrementRound() { currentRound++; }
 
+    // only returns enemies that are still alive
     public List<Combatant> getAliveEnemies() {
         ArrayList<Combatant> alive = new ArrayList<Combatant>();
         for (int i = 0; i < enemies.size(); i++) {
@@ -47,6 +42,7 @@ public class BattleContext {
         return alive;
     }
 
+    // player + alive enemies (used for turn ordering)
     public List<Combatant> getAllAliveCombatants() {
         ArrayList<Combatant> alive = new ArrayList<Combatant>();
         if (player.isAlive()) {
@@ -67,10 +63,6 @@ public class BattleContext {
             }
         }
         return true;
-    }
-
-    public boolean isPlayerDefeated() {
-        return !player.isAlive();
     }
 
     public void addEnemies(List<Enemy> backupEnemies) {
