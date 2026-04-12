@@ -3,7 +3,6 @@ package game.statuseffect;
 import game.combatant.Combatant;
 
 public class DefendEffect extends StatusEffect {
-    private static final int DEFENSE_BOOST = 10;
     private boolean applied = false;
 
     public DefendEffect(int duration) {
@@ -12,14 +11,14 @@ public class DefendEffect extends StatusEffect {
 
     public void applyTo(Combatant target) {
         if (!applied) {
-            target.setDefense(target.getDefense() + DEFENSE_BOOST);
+            target.setDefense(target.getDefense() + 10);
             applied = true;
         }
     }
 
     public void removeFrom(Combatant target) {
         if (applied) {
-            target.setDefense(target.getDefense() - DEFENSE_BOOST);
+            target.setDefense(target.getDefense() - 10);
             applied = false;
         }
     }
@@ -28,4 +27,3 @@ public class DefendEffect extends StatusEffect {
         return "DEFENDING (" + duration + " turns remaining)";
     }
 }
-/*This status sets new defense */
