@@ -3,7 +3,6 @@ package game.engine;
 import game.action.Action;
 import game.combatant.Combatant;
 import game.combatant.Enemy;
-import game.combatant.Player;
 import java.util.List;
 
 public class BattleEngine {
@@ -13,20 +12,21 @@ public class BattleEngine {
 
     public BattleEngine(BattleSetup setup, TurnOrderStrategy turnOrderStrategy) {
         this.setup = setup;
-        this.turnOrderStrategy = turnOrderStrategy;
+        this.turnOrderStrategy  = turnOrderStrategy;
     }
 
+    // creates enemies and sets up the battle context
     public BattleContext initializeBattle() {
         List<Enemy> enemies = setup.createInitialEnemies();
         this.context = new BattleContext(setup.getPlayer(), enemies);
         return context;
     }
 
+    // executes one combatant's turn (skips if dead or stunned)
     public void playTurn(Combatant combatant, Action action) {
         if (!combatant.isAlive()) {
             return;
         }
-
         if (combatant.isStunned()) {
             System.out.println(combatant.getName() + " -> STUNNED: Turn skipped");
         } else if (action != null) {
@@ -34,44 +34,38 @@ public class BattleEngine {
         }
     }
 
+    // tick effects for everyone at end of round
     public void endOfRound() {
-        // Tick and remove expired effects for all alive combatants
+        // Update effects for alive combatants
         List<Combatant> alive = context.getAllAliveCombatants();
         for (int i = 0; i < alive.size(); i++) {
-            alive.get(i).tickEffects();
-            alive.get(i).removeExpiredEffects();
+            alive.get(i).updateEffects();
         }
-
-        // Also tick effects on dead combatants (e.g. stun expiring on dead enemy)
+        // Also update effects on dead enemies
         List<Enemy> allEnemies = context.getEnemies();
         for (int i = 0; i < allEnemies.size(); i++) {
             if (!allEnemies.get(i).isAlive()) {
-                allEnemies.get(i).tickEffects();
-                allEnemies.get(i).removeExpiredEffects();
+                allEnemies.get(i).updateEffects();
             }
         }
     }
 
-    public BattleContext getContext() {
-        return context;
-    }
+    public BattleContext getContext() { return context; }
 
+    // battle ends when player dies, or all enemies dead with no backup remaining
     public boolean isBattleOver() {
-        if (context.isPlayerDefeated()) {
+        if (!context.getPlayer().isAlive()) {
             return true;
         }
-        if (context.allEnemiesDefeated() && !canBackupSpawn()) {
+        if (context.allEnemiesDefeated() && !(setup.hasBackupSpawn() && !context.isBackupSpawned())) {
             return true;
         }
         return false;
     }
 
-    private boolean canBackupSpawn() {
-        return setup.hasBackupSpawn() && !context.isBackupSpawned();
-    }
-
+    // true when all current enemies are dead but theres still a backup wave to spawn
     public boolean shouldSpawnBackup() {
-        return context.allEnemiesDefeated() && canBackupSpawn();
+        return context.allEnemiesDefeated() && setup.hasBackupSpawn() && !context.isBackupSpawned();
     }
 
     public void spawnBackup() {
@@ -96,3 +90,4 @@ public class BattleEngine {
         return turnOrderStrategy.determineTurnOrder(context.getAllAliveCombatants());
     }
 }
+
