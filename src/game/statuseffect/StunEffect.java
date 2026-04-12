@@ -7,14 +7,20 @@ public class StunEffect extends StatusEffect {
     public StunEffect(int duration) {
         super(duration);
     }
-    public void applyTo(Combatant target) { }
 
-    public void removeFrom(Combatant target) { }
+    public void applyTo(Combatant target) {
+        // Stun does not change any stats
+    }
 
-    public boolean preventsAction() { return true; }
+    public void removeFrom(Combatant target) {
+        // Nothing to undo
+    }
+
+    public boolean preventsAction() {
+        return true;
+    }
 
     public String toString() {
         return "STUNNED (" + duration + " turns remaining)";
     }
 }
-/*This status effect just adds a flag preventsAction. */
