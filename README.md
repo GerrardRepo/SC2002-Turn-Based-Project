@@ -22,6 +22,12 @@ Overall, the project focuses on applying software engineering and object-oriente
 | Danni |
 | Tony Zhong |
 
+## UML Class Diagram
+![image alt](https://github.com/GerrardRepo/SC2002-Turn-Based-Project/blob/0ec3af85455d2a2ea5567f9a3e8b1e226bd94835/Diagrams/SC2002%20CLASS%20DIAGRAM.png)
+
+## UML Sequence Diagram
+![image alt](https://github.com/GerrardRepo/SC2002-Turn-Based-Project/blob/0ec3af85455d2a2ea5567f9a3e8b1e226bd94835/Diagrams/SC2002%20draft%201%20sequence%20diagram.png)
+
 ## Features
 
 ### Player Classes
