@@ -9,8 +9,10 @@ public abstract class StatusEffect {
         this.duration = duration;
     }
 
+    // called when effect is first applied
     public abstract void applyTo(Combatant target);
 
+    // called when effect expires - should undo whatever applyTo did
     public abstract void removeFrom(Combatant target);
 
     public boolean preventsAction() {
@@ -26,10 +28,6 @@ public abstract class StatusEffect {
     }
 
     public void tick() {
-        duration = duration - 1;
-    }
-
-    public int getDuration() {
-        return duration;
+        duration--;
     }
 }
