@@ -3,6 +3,7 @@ package game.action;
 import game.combatant.Combatant;
 import game.engine.BattleContext;
 
+//damage = ATK - DEF (min 0)
 public class BasicAttack implements Action {
     private Combatant target;
 
@@ -12,9 +13,7 @@ public class BasicAttack implements Action {
 
     public void execute(Combatant actor, BattleContext context) {
         int damage = actor.getAttack() - target.getDefense();
-        if (damage < 0) {
-            damage = 0;
-        }
+        if (damage < 0) damage = 0;
 
         int hpBefore = target.getCurrentHP();
         target.takeDamage(damage);
