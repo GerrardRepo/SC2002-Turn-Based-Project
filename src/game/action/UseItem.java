@@ -5,6 +5,7 @@ import game.combatant.Player;
 import game.engine.BattleContext;
 import game.item.Item;
 
+// uses an item from the player's inventory then removes it (single use)
 public class UseItem implements Action {
     private Item item;
 
