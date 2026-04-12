@@ -1,13 +1,17 @@
 package game.item;
 
-public class SmokeBomb implements Item{
-	public String getName() {
-        return "Smoke Bomb";
+import game.combatant.Player;
+import game.engine.BattleContext;
+import game.statuseffect.SmokeBombInvulnerability;
+
+public class SmokeBomb implements Item {
+
+    public void use(Player player, BattleContext context) {
+        player.addStatusEffect(new SmokeBombInvulnerability(2));
+        System.out.println("  Enemy attacks deal 0 damage this turn + next turn");
     }
 
-    
-    public void use(Combatant user, Combatant target) {
-        user.addEffect(new SmokeBombEffect(2)); 
-        System.out.println(user.getName() + " used Smoke Bomb! Enemy attacks will deal 0 damage for 2 turns.");
+    public String getName() {
+        return "Smoke Bomb";
     }
 }
