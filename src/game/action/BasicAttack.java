@@ -1,18 +1,30 @@
 package game.action;
 
 import game.combatant.Combatant;
+import game.engine.BattleContext;
 
-public class BasicAttack implements Action 
-{
-	@Override
-	public void execute(Combatant actor, BattleContext context)
-	{
-		Combatant target = context.selectTarget(actor);
-		
-		int damage = Math.max(0,  actor.getAttack() - target.getDefense());
-		
-		target.takeDamage(damage);
-		
-		context.log(actor.getName() + " attacks " + target.getName() + " and deals " + damage + " damage.");
-	}
+public class BasicAttack implements Action {
+    private Combatant target;
+
+    public BasicAttack(Combatant target) {
+        this.target = target;
+    }
+
+    public void execute(Combatant actor, BattleContext context) {
+        int damage = actor.getAttack() - target.getDefense();
+        if (damage < 0) {
+            damage = 0;
+        }
+
+        int hpBefore = target.getCurrentHP();
+        target.takeDamage(damage);
+
+        System.out.println(actor.getName() + " -> BasicAttack -> " + target.getName()
+                + ": HP: " + hpBefore + " -> " + target.getCurrentHP()
+                + " (dmg: " + actor.getAttack() + "-" + target.getDefense() + "=" + damage + ")");
+
+        if (!target.isAlive()) {
+            System.out.println("  " + target.getName() + " has been ELIMINATED!");
+        }
+    }
 }
