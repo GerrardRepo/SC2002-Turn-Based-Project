@@ -1,5 +1,5 @@
 # SC2002 Turn Based Project
-Contributors:
+Contributors:\
 Gerrard Yee\
 Yang SiQiao\
 Tony Zhong
