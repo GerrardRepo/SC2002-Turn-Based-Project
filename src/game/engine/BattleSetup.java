@@ -9,23 +9,21 @@ import game.strategy.BasicAttackStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
+// stores the player + level, creates enemies for each difficulty
 public class BattleSetup {
     private Player player;
     private Level level;
 
     public BattleSetup(Player player, Level level, List<Item> chosenItems) {
         this.player = player;
-        this.level = level;
-
-        // Add chosen items to player inventory
-        for (int i = 0; i < chosenItems.size(); i++) {
+        this.level  = level;
+        for (int i = 0; i < chosenItems.size(); i++)
             player.addItem(chosenItems.get(i));
-        }
     }
 
     public Player getPlayer() { return player; }
-    public Level getLevel() { return level; }
 
+    // Easy = 3 goblins, Medium = goblin+wolf, Hard = 2 goblins
     public List<Enemy> createInitialEnemies() {
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
         BasicAttackStrategy strategy = new BasicAttackStrategy();
@@ -45,6 +43,7 @@ public class BattleSetup {
         return enemies;
     }
 
+    // Medium backup = 2 wolves, Hard backup = goblin + 2 wolves
     public List<Enemy> createBackupEnemies() {
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
         BasicAttackStrategy strategy = new BasicAttackStrategy();
@@ -61,6 +60,7 @@ public class BattleSetup {
         return enemies;
     }
 
+    // only medium and hard have backup waves
     public boolean hasBackupSpawn() {
         return level == Level.MEDIUM || level == Level.HARD;
     }
