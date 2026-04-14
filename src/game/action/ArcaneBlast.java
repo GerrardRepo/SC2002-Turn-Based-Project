@@ -5,11 +5,6 @@ import game.combatant.Wizard;
 import game.engine.BattleContext;
 import java.util.List;
 
-/**
- * Wizard special skill - hits ALL alive enemies at once.
- * Each kill gives the wizard +10 ATK permanently
- * Sets a 3 round cooldown unless its triggered from a Power Stone.
- */
 public class ArcaneBlast implements Action {
     private boolean fromPowerStone;
 
@@ -29,7 +24,7 @@ public class ArcaneBlast implements Action {
         Wizard wizard = (Wizard) actor;
 
         List<Combatant> aliveEnemies = context.getAliveEnemies();
-        System.out.println(wizard.getName() + " -> Arcane Blast -> All Enemies:");
+        System.out.println(wizard.getName() + " -> performs Arcane Blast on All Enemies:");
 
         for (int i = 0; i < aliveEnemies.size(); i++) {
             Combatant enemy = aliveEnemies.get(i);
@@ -40,12 +35,12 @@ public class ArcaneBlast implements Action {
             int hpBefore = enemy.getCurrentHP();
             enemy.takeDamage(damage);
 
-            System.out.println("  " + enemy.getName() + " HP: " + hpBefore + " -> " + enemy.getCurrentHP()
+            System.out.println(enemy.getName() + " HP: " + hpBefore + " -> " + enemy.getCurrentHP()
                     + " (dmg: " + wizard.getAttack() + "-" + enemy.getDefense() + "=" + damage + ")");
 
             if (!enemy.isAlive()) {
                 wizard.addArcaneBlastBonus(10);
-                System.out.println("  " + enemy.getName() + " ELIMINATED! Wizard ATK: "
+                System.out.println(enemy.getName() + " ELIMINATED! Wizard ATK: "
                         + wizard.getAttack() + " (+10 per Arcane Blast kill)");
             }
         }
@@ -53,7 +48,7 @@ public class ArcaneBlast implements Action {
         // Power Stone uses don't trigger cooldown
         if (!fromPowerStone) {
             wizard.startCooldown(3);
-            System.out.println("  Special Skills Cooldown set to 3 rounds");
+            System.out.println("Special Skills Cooldown set to 3 rounds");
         }
     }
 }

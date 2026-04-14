@@ -24,6 +24,6 @@ public class DefendEffect extends StatusEffect {
     }
 
     public String toString() {
-        return "DEFENDING (" + duration + " turns remaining)";
+        return "Defending (" + duration + " turns remaining)";
     }
 }

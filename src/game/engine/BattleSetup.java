@@ -24,6 +24,7 @@ public class BattleSetup {
     public Player getPlayer() { return player; }
 
     // Easy = 3 goblins, Medium = goblin+wolf, Hard = 2 goblins
+    //EASY NO BACKUP
     public List<Enemy> createInitialEnemies() {
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
         BasicAttackStrategy strategy = new BasicAttackStrategy();

@@ -18,6 +18,6 @@ public class StunEffect extends StatusEffect {
     }
 
     public String toString() {
-        return "STUNNED (" + duration + " turns remaining)";
+        return "Stunned (" + duration + " turns remaining)";
     }
 }

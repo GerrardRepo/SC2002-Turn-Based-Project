@@ -5,10 +5,6 @@ import game.combatant.Player;
 import game.engine.BattleContext;
 import game.statuseffect.StunEffect;
 
-/*
- * Warrior special - deals damage AND stuns the target for 2 turns.
- * Has a 3 round cooldown (unless used via Power Stone).
- */
 public class ShieldBash implements Action {
     private Combatant target;
     private boolean fromPowerStone;
@@ -29,7 +25,7 @@ public class ShieldBash implements Action {
         int hpBefore = target.getCurrentHP();
         target.takeDamage(damage);
 
-        System.out.println(actor.getName() + " -> Shield Bash -> " + target.getName()
+        System.out.println(actor.getName() + " -> performs Shield Bash on -> " + target.getName()
                 + ": HP: " + hpBefore + " -> " + target.getCurrentHP()
                 + " (dmg: " + actor.getAttack() + "-" + target.getDefense() + "=" + damage + ")");
 
@@ -45,7 +41,7 @@ public class ShieldBash implements Action {
             if (actor instanceof Player) {
                 Player player = (Player) actor;
                 player.startCooldown(3);
-                System.out.println("  Special Skills Cooldown set to 3 rounds");
+                System.out.println("Special Skills Cooldown set to 3 rounds");
             }
         }
     }

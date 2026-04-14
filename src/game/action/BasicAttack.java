@@ -18,12 +18,12 @@ public class BasicAttack implements Action {
         int hpBefore = target.getCurrentHP();
         target.takeDamage(damage);
 
-        System.out.println(actor.getName() + " -> BasicAttack -> " + target.getName()
+        System.out.println(actor.getName() + " -> performs BasicAttack on-> " + target.getName()
                 + ": HP: " + hpBefore + " -> " + target.getCurrentHP()
                 + " (dmg: " + actor.getAttack() + "-" + target.getDefense() + "=" + damage + ")");
 
         if (!target.isAlive()) {
-            System.out.println("  " + target.getName() + " has been ELIMINATED!");
+            System.out.println(target.getName() + " has been ELIMINATED!");
         }
     }
 }

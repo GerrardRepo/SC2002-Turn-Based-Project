@@ -75,7 +75,7 @@ public class BattleEngine {
 
         System.out.println();
         System.out.println("===================================================");
-        System.out.println("  BACKUP SPAWN! New enemies enter the battle!");
+        System.out.println("Backup Spawned!");
         for (int i = 0; i < backup.size(); i++) {
             System.out.println("  > " + backup.get(i).getName() + " (HP: " + backup.get(i).getCurrentHP() + ")");
         }
@@ -90,4 +90,3 @@ public class BattleEngine {
         return turnOrderStrategy.determineTurnOrder(context.getAllAliveCombatants());
     }
 }
-

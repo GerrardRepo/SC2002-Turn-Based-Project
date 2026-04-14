@@ -12,7 +12,7 @@ public abstract class StatusEffect {
     // called when effect is first applied
     public abstract void applyTo(Combatant target);
 
-    // called when effect expires - should undo whatever applyTo did
+    //undo whatever applyTo did
     public abstract void removeFrom(Combatant target);
 
     public boolean preventsAction() {
