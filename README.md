@@ -10,6 +10,8 @@ The arena includes several gameplay features, such as:
 - **Status effects** that can be applied to both the player and enemy units
 - **Special abilities (skills)** for each character, with delays or cooldown mechanics implemented using the **Strategy Pattern**
 - An **inventory system** that allows the player to gain advantages during battle.
+- **Dynamic choice selection** system that only shows available actions to the user.
+- and **many more**.
 
 Overall, the project focuses on applying software engineering and object-oriented design concepts to build a functional, modular, and maintainable turn-based combat system.
 
@@ -30,7 +32,7 @@ For more details, please refer to the report document.
 ## UML Sequence Diagram
 ![image alt](https://github.com/GerrardRepo/SC2002-Turn-Based-Project/blob/0ec3af85455d2a2ea5567f9a3e8b1e226bd94835/Diagrams/SC2002%20draft%201%20sequence%20diagram.png)
 
-## Features
+## Combatants Statistics and Information
 
 ### Player Classes
 
