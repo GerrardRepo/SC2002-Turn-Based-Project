@@ -13,6 +13,8 @@ The arena includes several gameplay features, such as:
 
 Overall, the project focuses on applying software engineering and object-oriented design concepts to build a functional, modular, and maintainable turn-based combat system.
 
+For more details, please refer to the report document.
+
 ## Team Members
 
 | Name |
