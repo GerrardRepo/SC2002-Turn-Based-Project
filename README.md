@@ -36,29 +36,29 @@ For more details, please refer to the report document.
 
 ### Player Classes
 
-- **Warrior** — HP:260 ATK:40 DEF:20 SPD:30 — tanky, special skill is Shield Bash (damage + stun)
-- **Wizard** — HP:200 ATK:50 DEF:10 SPD:20 — glass cannon, special skill is Arcane Blast (hits all enemies, +10 ATK per kill)
+- **Warrior** — HP:260 ATK:40 DEF:20 SPD:30 - special skill is Shield Bash (damage + stun)
+- **Wizard** — HP:200 ATK:50 DEF:10 SPD:20 - special skill is Arcane Blast (hits all enemies, +10 ATK per kill)
 
 ### Enemies
 
 - **Goblin** — HP:55 ATK:35 DEF:15 SPD:25
-- **Wolf** — HP:40 ATK:45 DEF:5 SPD:35 — fast but squishy
+- **Wolf** — HP:40 ATK:45 DEF:5 SPD:35
 
 ### Difficulty Levels
 
-- **Easy** — 3 Goblins
-- **Medium** — 1 Goblin + 1 Wolf → Backup: 2 Wolves
-- **Hard** — 2 Goblins → Backup: 1 Goblin + 2 Wolves
+- **Easy** - 3 Goblins
+- **Medium** - 1 Goblin + 1 Wolf → Backup: 2 Wolves
+- **Hard** - 2 Goblins → Backup: 1 Goblin + 2 Wolves
 
 ### Items (pick 2 at the start, single use)
 
-- **Potion** — Heal 100 HP
-- **Power Stone** — Trigger special skill for free (no cooldown)
-- **Smoke Bomb** — Block all enemy damage for 2 rounds
+- **Potion** - Heal 100 HP
+- **Power Stone** - Trigger special skill for free (no cooldown)
+- **Smoke Bomb** - Block all enemy damage for 2 rounds
 
 ### Actions
 
-- Basic Attack — single target, damage = ATK - DEF
-- Defend — +10 DEF for 2 rounds (doesn't stack)
-- Use Item — consume an item from inventory
-- Special Skill — class-specific, 3-round cooldown
+- Basic Attack - single target, damage = ATK - DEF
+- Defend - +10 DEF for 2 rounds (doesn't stack)
+- Use Item - consume an item from inventory
+- Special Skill - class-specific, 3-round cooldown
